@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic"; // <--- ADD THIS
+
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { FaSignInAlt } from "react-icons/fa";
