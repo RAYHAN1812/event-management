@@ -1,12 +1,10 @@
 "use client";
 
-export const dynamic = "force-dynamic"; // <--- ADD THIS
-
-import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { FaSignInAlt } from "react-icons/fa";
 
-export default function LoginPage() {
+export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/manage-events";
 
@@ -21,9 +19,7 @@ export default function LoginPage() {
         </p>
 
         <button
-          onClick={() =>
-            signIn("google", { callbackUrl }) // Google login
-          }
+          onClick={() => signIn("google", { callbackUrl })}
           className="w-full flex items-center justify-center bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200"
         >
           <FaSignInAlt className="mr-2" /> Sign In with Google
