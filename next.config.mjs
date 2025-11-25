@@ -22,7 +22,7 @@ const nextConfig = {
               font-src 'self' https://fonts.gstatic.com;
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
               script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com;
-              connect-src 'self' https://accounts.google.com https://www.googleapis.com;
+              connect-src 'self' https://accounts.google.com https://www.googleapis.com https://next-js-server.onrender.com;
               frame-src 'self' https://accounts.google.com;
             `.replace(/\s+/g, ' ').trim(),
           },

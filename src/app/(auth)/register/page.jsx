@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { FaUserPlus } from "react-icons/fa";
 import { useAuth } from '../../components/AuthProvider';
 
-const API_BASE_URL = 'http://localhost:5000/api/auth';
+// Use your Render backend URL in production
+const API_BASE_URL = 'https://next-js-server.onrender.com/api/auth';
 
 export default function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -13,7 +14,9 @@ export default function RegisterPage() {
   const [error, setError] = useState(null);
 
   const router = useRouter();
-  const { login } = useAuth();
+  const auth = useAuth(); // Guarded hook
+  if (!auth) return null; // Prevent build/prerender errors
+  const { login } = auth;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +36,6 @@ export default function RegisterPage() {
         return;
       }
 
-      // Only store the user object; no token needed
       login(data.user);
       router.push('/manage-events');
 
