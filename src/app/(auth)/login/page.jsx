@@ -1,10 +1,11 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { FaSignInAlt } from "react-icons/fa";
 
-export default function LoginForm() {
+function LoginFormInner() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/manage-events";
 
@@ -26,7 +27,7 @@ export default function LoginForm() {
         </button>
 
         <p className="mt-4 text-center text-sm text-gray-600">
-          Don't have an account?{" "}
+          Don't have an account?
           <a
             href="/register"
             className="font-medium text-indigo-600 ml-1 hover:text-indigo-500"
@@ -36,5 +37,14 @@ export default function LoginForm() {
         </p>
       </div>
     </div>
+  );
+}
+
+// ✅ NEW: Wrapping with Suspense
+export default function LoginForm() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginFormInner />
+    </Suspense>
   );
 }
